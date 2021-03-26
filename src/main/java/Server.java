@@ -19,9 +19,8 @@ public class Server implements Hello {
     }
 
     @Override
-    public String sayHello(String name) throws RemoteException {
-        System.out.println(name);
-        return "Hello, " + name;
+    public DataOut sayHello(Data data) throws RemoteException {
+        return new DataOut("Hello, " + data.name + ". You are " + data.age + " years old and based in " + data.position);
     }
 
     public static void main(String[] args) {
@@ -29,7 +28,7 @@ public class Server implements Hello {
             Server obj = new Server();
             Hello stub = (Hello) UnicastRemoteObject.exportObject(obj,0);
 
-            reg.bind("Hello", stub);
+            reg.bind("Data", stub);
 
             System.out.println("Server ready!");
         } catch (Exception e) {

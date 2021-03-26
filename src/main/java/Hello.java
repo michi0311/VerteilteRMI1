@@ -6,5 +6,5 @@ import java.rmi.RemoteException;
  *****************************/
 
 public interface Hello extends Remote {
-    String sayHello(String name) throws RemoteException;
+    DataOut sayHello(Data data) throws RemoteException;
 }

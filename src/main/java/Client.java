@@ -14,9 +14,10 @@ public class Client {
         String host = (args.length < 1) ? null : args[0];
         try {
             Registry registry = LocateRegistry.getRegistry(host);
-            Hello stub = (Hello) registry.lookup("Hello");
-            String response = stub.sayHello("Michael Marolt");
-            System.out.println("Response: " + response);
+            Data data = new Data("Michael",21,"Sankt Kanzian");
+            Hello stub = (Hello) registry.lookup("Data");
+            DataOut response = stub.sayHello(data);
+            System.out.println("Response: " + response.out);
         } catch (Exception e) {
             System.err.println("Client Exception: " + e.toString());
             e.printStackTrace();
