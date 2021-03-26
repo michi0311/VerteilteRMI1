@@ -3,11 +3,11 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-/****************************
+/*****************************
  * Created by Michael Marolt *
  *****************************/
 
-public class Server implements Hello {
+public class Server implements DataService {
     static Registry reg;
     public Server() {
         try {
@@ -19,14 +19,14 @@ public class Server implements Hello {
     }
 
     @Override
-    public DataOut sayHello(Data data) throws RemoteException {
+    public DataOut sendData(Data data) throws RemoteException {
         return new DataOut("Hello, " + data.name + ". You are " + data.age + " years old and based in " + data.position);
     }
 
     public static void main(String[] args) {
         try {
             Server obj = new Server();
-            Hello stub = (Hello) UnicastRemoteObject.exportObject(obj,0);
+            DataService stub = (DataService) UnicastRemoteObject.exportObject(obj,0);
 
             reg.bind("Data", stub);
 
