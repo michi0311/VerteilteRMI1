@@ -16,7 +16,6 @@ public class Server implements Hello {
             System.err.println("Server Exception: " + e.toString());
             e.printStackTrace();
         }
-
     }
 
     @Override
